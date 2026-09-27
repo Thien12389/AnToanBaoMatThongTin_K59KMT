@@ -55,11 +55,6 @@
       print(f"[+] Kết quả giải mã: {decrypted_text}")
   ```
 
-  **Kết quả chạy thực tế (Minh chứng):**
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/485c0134-75c5-49ab-841c-a0961c6fd189" />
-
----
-
 ## 2. Tìm hiểu thuật toán mã hóa bất đối xứng RSA
 
 ### Nguyên lý sinh cặp khóa (Bí mật và Công khai)

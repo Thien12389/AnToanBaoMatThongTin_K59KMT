@@ -23,6 +23,40 @@
   **Kết quả chạy thực tế (Minh chứng):**
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/17493366-e4d1-4bb3-9f62-5df1cdb277ae" />
 
+  ```python
+  import os
+  from Crypto.Cipher import AES
+  from Crypto.Util.Padding import pad, unpad
+
+  def aes_encrypt(plaintext: str, key: bytes) -> bytes:
+      iv = os.urandom(16)
+      cipher = AES.new(key, AES.MODE_CBC, iv)
+      padded_data = pad(plaintext.encode('utf-8'), AES.block_size)
+      return iv + cipher.encrypt(padded_data)
+
+  def aes_decrypt(ciphertext_with_iv: bytes, key: bytes) -> str:
+      iv = ciphertext_with_iv[:16]
+      ciphertext = ciphertext_with_iv[16:]
+      cipher = AES.new(key, AES.MODE_CBC, iv)
+      padded_data = cipher.decrypt(ciphertext)
+      return unpad(padded_data, AES.block_size).decode('utf-8')
+
+  if __name__ == "__main__":
+      key = b'K59KMT_BaoMat_12'
+      message = "Lê Đỗ Hoàng Thiện - K235480106068 - Môn An toàn và Bảo mật thông tin"
+
+      print("=== DEMO MÃ HÓA VÀ GIẢI MÃ AES (CBC MODE) ===")
+      print(f"[+] Văn bản gốc: {message}\n")
+
+      encrypted_bytes = aes_encrypt(message, key)
+      print(f"[+] Bản mã (dạng Hex): {encrypted_bytes.hex()}\n")
+
+      decrypted_text = aes_decrypt(encrypted_bytes, key)
+      print(f"[+] Kết quả giải mã: {decrypted_text}")
+  ```
+
+  **Kết quả chạy thực tế (Minh chứng):**
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/485c0134-75c5-49ab-841c-a0961c6fd189" />
 
 ---
 
